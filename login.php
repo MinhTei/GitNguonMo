@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Thông tin sinh viên</title>
 </head>
 <body>
-    <h2>THÔNG TIN SINH VIÊN OKE</h2>
+    <h2>THÔNG TIN SINH VIÊN OKEeeeee</h2>
     
     <form method="POST" enctype="multipart/form-data">
         <p>
