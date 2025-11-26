@@ -35,6 +35,7 @@
             },
         }
     </script>
+<script src="../js/api-client.js"></script>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
 <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
@@ -162,8 +163,15 @@
 </select>
 </div>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-<div class="group relative flex w-full flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+<div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Products will be loaded here by JavaScript -->
+<div class="col-span-full flex items-center justify-center py-12">
+<div class="text-center">
+<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+<p class="text-gray-600 dark:text-gray-400">Đang tải sản phẩm...</p>
+</div>
+</div>
+</div>
 <div class="relative overflow-hidden bg-gray-100 dark:bg-gray-800 pt-[100%]">
     <a href="product_detail.html"><img alt="Cà chua tươi đỏ mọng trên cành" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKzGQSEj8OE2FV1ui7srT3AfLtMJNVyziLlJhJNDBhY9-xA6SQ03P58VC6q1slUC24JVNsdC-WMXa3Coz0cD4uYduLUqaEMQOvB-syC-bLicC9MZQOBl42Q_kXzx15JrklEx3hjyvS6PnVAKe6ngk0FZF5Ti78GxkNbVrkNrMAeJttLg8R_XE6jja9D12phqJLCJ5OphGnYHVpkuV-t7MXPiUndqxXHvpbzWnNVdAJb1LeVMLHRJBI5vjBvuUr-0-0z8WcsSS0xlTN"/></a>
 <span class="absolute top-3 left-3 inline-flex items-center rounded-full bg-yellow-400/20 px-2.5 py-1 text-xs font-semibold text-yellow-600 dark:text-yellow-400">-15%</span>
@@ -284,14 +292,62 @@
 <a class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" href="#">3</a>
 <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-sm font-medium text-gray-500">...</span>
 <a class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" href="#">8</a>
-<a class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" href="#">
-<span class="material-symbols-outlined text-base">chevron_right</span>
-</a>
-</nav>
-</div>
-</div>
 </div>
 </main>
+
+<script>
+// Load products from API
+async function loadProducts() {
+  const container = document.getElementById('products-container');
+  try {
+    const products = await APIClient.getProducts();
+    
+    if (!products || products.length === 0) {
+      container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-gray-600 dark:text-gray-400">Không tìm thấy sản phẩm</p></div>';
+      return;
+    }
+    
+    container.innerHTML = products.map(product => `
+      <div class="group relative flex w-full flex-col overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+        <div class="relative overflow-hidden bg-gray-100 dark:bg-gray-800 pt-[100%]">
+          <a href="product_detail.html?id=${product.id}">
+            <img alt="${product.name}" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110" src="${product.imageUrl || 'https://via.placeholder.com/300'}"/>
+          </a>
+        </div>
+        <div class="flex flex-1 flex-col p-4">
+          <h3 class="text-base font-bold text-gray-900 dark:text-white truncate">${product.name}</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400">${product.description || 'Sản phẩm chất lượng'}</p>
+          <div class="mt-4 flex flex-1 items-end justify-between gap-4">
+            <div class="flex flex-col items-start gap-1">
+              <p class="text-lg font-bold text-primary">${product.price.toLocaleString('vi-VN')}đ</p>
+            </div>
+            <button onclick="addToCart(${product.id})" class="flex h-10 w-auto flex-1 items-center justify-center gap-2 rounded-lg bg-primary text-primary-dark-text font-bold text-sm transition-opacity duration-300 hover:opacity-90">
+              <span class="material-symbols-outlined text-base">add_shopping_cart</span>
+              <span>Thêm vào giỏ</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } catch (error) {
+    console.error('Error loading products:', error);
+    container.innerHTML = '<div class="col-span-full text-center py-12"><p class="text-red-600 dark:text-red-400">Lỗi khi tải sản phẩm. Vui lòng thử lại!</p></div>';
+  }
+}
+
+// Add to cart function
+async function addToCart(productId) {
+  try {
+    const result = await APIClient.addToCart(productId, 1);
+    alert(`Đã thêm vào giỏ hàng!`);
+  } catch (error) {
+    alert(`Lỗi: ${error.message}`);
+  }
+}
+
+// Load products when page loads
+document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
 <footer class="bg-white dark:bg-gray-900/50 border-t border-gray-200 dark:border-gray-800 mt-12">
 <div class="container mx-auto px-4 py-12">
 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">

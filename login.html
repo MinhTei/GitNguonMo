@@ -42,6 +42,7 @@
 .form-checkbox:checked {
     background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD6ByQjqko5hHGomXo6ED-BbAih8rBJM6SlalyTGIgf47m4-CIs206w8shaa_2A-LKY9w2vA8rJVRxf8GJqHc0lLl3v_0JGpQfjl2ALVeXKvOPwUQZ9hhK7g0hQh36VLlPkkG2wLmS6pmvocAT9hAdECVz794zLcGSZviucWhAhDJDZwgJFTQITbYEH_fqCJwEkEsuXl0JM2QwxL19o95ILisEoGRO5VJLTPpVFq9I-eV-5SgVJ_hDmappDZbxti4kLCUPfF6WepdzK)
     }</style>
+<script src="../js/api-client.js"></script>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark">
 <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
@@ -72,14 +73,14 @@
 <!-- Email -->
 <label class="flex flex-col w-full">
 <p class="text-[#111811] dark:text-gray-100 text-sm font-medium leading-normal pb-2">Email hoặc Tên đăng nhập</p>
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111811] dark:text-gray-100 dark:placeholder:text-gray-500 focus:outline-0 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-gray-400 p-3 text-base font-normal leading-normal" placeholder="Nhập email của bạn" value=""/>
+<input id="login-email" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111811] dark:text-gray-100 dark:placeholder:text-gray-500 focus:outline-0 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-gray-400 p-3 text-base font-normal leading-normal" placeholder="Nhập email của bạn" type="email" required/>
 </label>
 <!-- Password -->
 <label class="flex flex-col w-full">
 <p class="text-[#111811] dark:text-gray-100 text-sm font-medium leading-normal pb-2">Mật khẩu</p>
 <div class="flex w-full flex-1 items-stretch">
-<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#111811] dark:text-gray-100 dark:placeholder:text-gray-500 focus:outline-0 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-gray-400 p-3 pr-2 text-base font-normal leading-normal" placeholder="Nhập mật khẩu của bạn" type="password" value=""/>
-<button aria-label="Toggle password visibility" class="text-gray-500 dark:text-gray-400 flex border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 items-center justify-center px-3 rounded-r-lg border-l-0 hover:text-primary dark:hover:text-white">
+<input id="login-password" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#111811] dark:text-gray-100 dark:placeholder:text-gray-500 focus:outline-0 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:border-primary h-12 placeholder:text-gray-400 p-3 pr-2 text-base font-normal leading-normal" placeholder="Nhập mật khẩu của bạn" type="password" required/>
+<button aria-label="Toggle password visibility" onclick="togglePasswordVisibility()" class="text-gray-500 dark:text-gray-400 flex border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 items-center justify-center px-3 rounded-r-lg border-l-0 hover:text-primary dark:hover:text-white" type="button">
 <span class="material-symbols-outlined text-xl">visibility</span>
 </button>
 </div>
@@ -91,11 +92,13 @@
 <label class="text-gray-600 dark:text-gray-300 text-sm font-normal leading-normal select-none" for="remember-me">Ghi nhớ đăng nhập</label>
 </div>
 <div class="shrink-0">
-<button class="text-primary text-sm font-medium leading-normal hover:underline">Quên mật khẩu?</button>
+<button class="text-primary text-sm font-medium leading-normal hover:underline" type="button">Quên mật khẩu?</button>
 </div>
 </div>
+<!-- Message Box -->
+<div id="loginMessage" class="hidden p-4 rounded-lg text-sm"></div>
 <!-- CTA Button -->
-<button class="flex items-center justify-center text-center font-medium h-12 px-6 rounded-lg bg-primary text-white w-full mt-4 text-base hover:bg-primary/90 transition-colors">Đăng nhập</button>
+<button onclick="handleLogin(event)" class="flex items-center justify-center text-center font-medium h-12 px-6 rounded-lg bg-primary text-white w-full mt-4 text-base hover:bg-primary/90 transition-colors" type="button">Đăng nhập</button>
 <!-- Divider -->
 <div class="flex items-center gap-4 my-4">
 <hr class="w-full border-t border-gray-200 dark:border-gray-700"/>
@@ -124,4 +127,42 @@
 </div>
 </div>
 </div>
+
+<script>
+// Toggle password visibility
+function togglePasswordVisibility() {
+  const input = document.getElementById('login-password');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+// Handle login
+async function handleLogin(event) {
+  event.preventDefault();
+  
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const messageBox = document.getElementById('loginMessage');
+  
+  if (!email || !password) {
+    messageBox.className = 'p-4 rounded-lg text-sm bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 block';
+    messageBox.textContent = '✗ Vui lòng nhập email và mật khẩu';
+    return;
+  }
+  
+  try {
+    const result = await APIClient.login(email, password);
+    messageBox.className = 'p-4 rounded-lg text-sm bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 block';
+    messageBox.textContent = '✓ Đăng nhập thành công! Đang chuyển hướng...';
+    
+    // Redirect to home after 2 seconds
+    setTimeout(() => {
+      window.location.href = 'index.html';
+    }, 2000);
+  } catch (error) {
+    messageBox.className = 'p-4 rounded-lg text-sm bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 block';
+    messageBox.textContent = `✗ Lỗi: ${error.message}`;
+  }
+}
+</script>
+
 </body></html>
