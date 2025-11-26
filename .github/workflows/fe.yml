@@ -1,0 +1,26 @@
+name: Deploy to Somee via FTP
+
+on:
+  push:
+    branches:
+      - main  # Chạy khi có code mới đẩy vào nhánh main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ./  # Thư mục gốc trên host (nếu Somee yêu cầu vào wwwroot thì sửa thành ./wwwroot/)
+        exclude: | # Các file không muốn up lên host
+          **/.git*
+          **/.git*/**
+          **/.github/**
