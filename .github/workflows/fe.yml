@@ -19,7 +19,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: ./  # Thư mục gốc trên host (nếu Somee yêu cầu vào wwwroot thì sửa thành ./wwwroot/)
+        server-dir: ./www.quytuhocmon.somee.com/ 
         exclude: | # Các file không muốn up lên host
           **/.git*
           **/.git*/**
