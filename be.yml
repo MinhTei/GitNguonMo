@@ -1,0 +1,32 @@
+name: Deploy Backend to Somee
+
+on:
+  push:
+    branches:
+      - main
+    # Nếu BE và FE chung 1 repo, nên thêm dòng này để chỉ chạy khi sửa folder backend
+    # paths: 
+    #   - 'backend/**' 
+
+jobs:
+  backend-deploy:
+    name: 🚀 Deploy Backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # QUAN TRỌNG 1: Đường dẫn trên Host (Thêm /api/ vào cuối)
+          server-dir: /www.quytuhocmon.somee.com/api/
+          
+          # QUAN TRỌNG 2: (Chỉ dùng nếu code BE của bạn nằm trong thư mục con)
+          # Nếu code BE nằm ngay ngoài cùng repo -> Xóa dòng local-dir đi
+          # Nếu code BE nằm trong folder tên là "server" -> Bỏ comment và sửa thành ./server/
+          # local-dir: ./tên-folder-chứa-code-be/
