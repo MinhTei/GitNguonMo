@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FreshHarvest - Rau Củ Quả Sạch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c55e",
+                        "primary-content": "#ffffff",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102213",
+                        "text-light": "#111812",
+                        "text-dark": "#e8f5e9",
+                        "text-muted-light": "#608a67",
+                        "text-muted-dark": "#a5d6a7"
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">eco</span>
+<h2 class="text-text-light dark:text-text-dark text-xl font-bold leading-tight tracking-[-0.015em]">FreshHarvest</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Trang chủ</a>
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Sản phẩm</a>
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Về chúng tôi</a>
+<a class="text-text-light dark:text-text-dark text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary transition-colors" href="#">Blog</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end items-center gap-3">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-text-muted-light dark:text-text-muted-dark flex bg-gray-200/60 dark:bg-gray-800/60 items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-gray-200/60 dark:bg-gray-800/60 h-full placeholder:text-text-muted-light dark:placeholder:text-text-muted-dark px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Tìm kiếm sản phẩm..." value=""/>
+</div>
+</label>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-200/60 dark:bg-gray-800/60 text-text-light dark:text-text-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-300/60 dark:hover:bg-gray-700/60 transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-gray-200/60 dark:bg-gray-800/60 text-text-light dark:text-text-dark gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-gray-300/60 dark:hover:bg-gray-700/60 transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<!-- Carousel -->
+<div class="flex overflow-x-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden snap-x snap-mandatory">
+<div class="flex items-stretch p-1 gap-6 flex-shrink-0">
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl bg-white dark:bg-gray-900/50 shadow-sm min-w-80 w-80 snap-center">
+<div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-xl flex flex-col" data-alt="A vibrant collection of fresh summer vegetables like tomatoes, cucumbers, and bell peppers." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKpZYFJWugv8VGH1ZOP2yURRFDdais03_5Fs4atq4n7aS-_LaCcvZ1578sUttSe2akY5Kv3IddJ3OcP4kgIuq6VvvigzBPkPKXMZZzrxVB6Eemm0pmUlPsSJT4fr4PO9KcgWENWH51ooliFK5e3lp3-Pcu9xeRxS0wVHdJ1_TdptcGWx0aJTy8MgCHAY3AD9tBRKm6aH4O0BamBgDyobapMKGQVdzb4gH0e9if5_x6S4mLdzahUW8w5IFnBqE1LvNG2x56QZLJlf-r');"></div>
+<div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+<div>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-normal">Rau Củ Mùa Hè Tươi Ngon</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal">Khám phá ngay bộ sưu tập rau củ tươi sạch nhất mùa hè này.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-primary-content text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Mua Ngay</span>
+</button>
+</div>
+</div>
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl bg-white dark:bg-gray-900/50 shadow-sm min-w-80 w-80 snap-center">
+<div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-xl flex flex-col" data-alt="A colorful assortment of imported fruits including kiwis, oranges, and grapes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqd6Gz_LSJdn3WCfcvClpQnfVax7BgFKXBP1EaMrcK2DrzXyHrEI5iI7pq1E8OSyPiRBja-OP0WoiaU8vrlXdaAW1tfleRqxIw_5M-02Q9LhqXVNhm31v-f5Ki5iTtk_NQ5LcC9lGXRc8O3wgH-xAkiF-dtZ9u46PtSTk48KnQsDcD3ogJTQ4uvW2CFAqRNEgJgw9xqhYJDKqO0gwU5JSyosyE06wapUUF0zL5xVtQScebIEWgjGD4hsTx6dXRZibDTtS_5VWiMpBl');"></div>
+<div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+<div>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-normal">Giảm Giá 20% Trái Cây Nhập Khẩu</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal">Ưu đãi đặc biệt cho các loại trái cây nhập khẩu chất lượng cao.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-primary-content text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Xem Ưu Đãi</span>
+</button>
+</div>
+</div>
+<div class="flex h-full flex-1 flex-col gap-4 rounded-xl bg-white dark:bg-gray-900/50 shadow-sm min-w-80 w-80 snap-center">
+<div class="w-full bg-center bg-no-repeat aspect-[4/3] bg-cover rounded-t-xl flex flex-col" data-alt="A delivery person handing a box of fresh groceries to a customer at their doorstep." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwi9Jn_3Lq7S6tmXYGKsHZYAV4wfFfE-ZLRiz95GjWMoOZQo1yF3GWjFYJvQxaect2JdU_eXN8Qm5_jUL-nU3VzvzM4xrIV31sOfbDOzc5A9hb4k2vrKy0vyScPkFpzUE7L8CVTlxN4rOOVILMAqprGC-ref1qE4aWMwQe1I8HH-4nis7Rd2utGHRUC9G8Nm8oXwiOyJUc2RUFlHxqEb6T7_hV_p9z1z6UjoRpA1Gw1C2ufXQ4ZqjA7j3LSg17GLHdWaTvABG4A_rj');"></div>
+<div class="flex flex-col flex-1 justify-between p-4 pt-0 gap-4">
+<div>
+<p class="text-text-light dark:text-text-dark text-base font-bold leading-normal">Miễn Phí Giao Hàng Từ 500k</p>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm font-normal leading-normal">Giao hàng tận nơi, an toàn và nhanh chóng cho mọi đơn hàng.</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-primary-content text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Mua Ngay</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SectionHeader -->
+<h2 class="text-text-light dark:text-text-dark text-2xl md:text-3xl font-bold leading-tight tracking-tight px-4 pb-3 pt-10 md:pt-16">Danh Mục Sản Phẩm</h2>
+<!-- ImageGrid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-4">
+<div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square group overflow-hidden" data-alt="Fresh leafy greens like lettuce and spinach." style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCXmDc3BZC_KPV7JhIr9qcs3MT7qAS51FbRqICX4JwFAWRAySsUByZ2UK-o8x5YXjjxpIeSmcWjrVtIMvGJS_Km7P0TEQvz2Y0dJw_rg6DVJ55yAZjW5y421_xqFxIHP-sX-WvOH8kjz0piW7hDMbiab1ac9C573Cdzx1u3KQNONhmfS9Rn0tMYqomyHDNjUGNlUFRu_njaaUtJ4SlCfRhsa9DM75eMkLK4tg3AKSw09bGk7afPGFwzncrqIPAyh725egABKj52KLh');">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<p class="text-white text-base md:text-lg font-bold leading-tight relative">Rau Ăn Lá</p>
+</div>
+<div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square group overflow-hidden" data-alt="A variety of root vegetables like carrots and potatoes." style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuClWRug1vjogbsQLojUjsXoSmnhYtAbBLw2D_KiJasy0dugYPfQh5V0AOWxPh8HwhHGKbHsaHHs_4RMwanEjayVCoPlwel3SweoPj2hvqyTIUDdO1poBHj6I-c7mWpxrA5gJKm9Ij3Nbnu1PLwOpvaGDV067c4-GjkysFFSSclWme6Ii_l8K7FReBQ62rOnRYZO2-VdgFQjqnbvnPyg3HihC95mDS23_oA9FQt-eUaTKdya4DY2bRSJqWCb5E2qJcOLWLQAPp-Si2Cd');">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<p class="text-white text-base md:text-lg font-bold leading-tight relative">Củ Quả</p>
+</div>
+<div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square group overflow-hidden" data-alt="A basket of colorful seasonal fruits." style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCXKdmxvsWFf61920ceC6Qz2VV0bcMaBzqQJ50kamf-znOWA-iywHY5ZytZFCLXWcJ4lvi3J_CTboxerXHouzjM5Ce178VFzKW4offYWmsXiPddm0xXjdHg944JPS2TvTJkn0yBTonzLzlLRE6XoCd8FX8fipj5vg3o_RXW5ODLqhyJ6Q56yq7OT6-I7rbUOF9jJiF_WpwRKYz1N7zkI3KgQl4H_tSW0F_qF7gXnm6kORbJtY-1WzYblB88yjU6un1X6GUBJGLQh6E');">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<p class="text-white text-base md:text-lg font-bold leading-tight relative">Trái Cây</p>
+</div>
+<div class="relative bg-cover bg-center flex flex-col gap-3 rounded-xl justify-end p-4 aspect-square group overflow-hidden" data-alt="Organic produce with a certification label." style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 60%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAql8ZeyBfrW_NkfpISe5q-B8iFivK7urkGrFNCgpBZughr5mEyLwkepEJgojPFXJdUhNiJU4wtDSz13lkoEy4mBAQkLt3BCFn1j6opCacIFog-QM-Dz749TFX-pSfHrnpWcIbd0PmjlAGdRtYr5LKDXiDGcu8kiEgtdbh8PrCP5s_C6o2fqS93FvsG_Is3-uF6dmkUshFWgvpWX4qVQEEDzRAOWQ6dhPqqDLNImD5z_qmEbiWk6F9PquPJDrkuiF8to-CNL-7BnFhn');">
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<p class="text-white text-base md:text-lg font-bold leading-tight relative">Sản Phẩm Hữu Cơ</p>
+</div>
+</div>
+<!-- Brand Story Section -->
+<div class="mt-10 md:mt-16 bg-white dark:bg-gray-900/50 rounded-xl overflow-hidden shadow-sm">
+<div class="grid md:grid-cols-2 items-center">
+<div class="p-8 md:p-12">
+<h2 class="text-2xl md:text-3xl font-bold text-text-light dark:text-text-dark leading-tight tracking-tight mb-4">Từ Nông Trại Đến Bàn Ăn</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark mb-6">Chúng tôi cam kết mang đến những sản phẩm tươi ngon nhất, được trồng theo phương pháp hữu cơ, không thuốc trừ sâu. FreshHarvest hợp tác trực tiếp với nông dân địa phương để đảm bảo chất lượng và hỗ trợ cộng đồng.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-primary-content text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+<span class="truncate">Tìm Hiểu Thêm</span>
+</button>
+</div>
+<div class="h-64 md:h-full">
+<div class="w-full h-full bg-cover bg-center" data-alt="A sunlit farm field with a farmer tending to crops." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5Hp3yVLqa5l5YpTqcBx2mxwAyFtk76jvAIyMIYEsLvtLrSSJhrUZDGIGpiW2x_u-XlVCII1HsEeCGcoxJ8Ra-wXkP_-xZiRLuSdy1rNvKAeW8YUlfvos19t2cg3FFyLc4fg4y9Ef8GJUTv_koS_33oGztbOxiMRFPM-emWjn3XkTDraoadVIV_nR6vWt2unmjuwDTK5ZZxfKAaFHECDv04DRMY-N6AjzGMJk62IptFFTEPwCwNwIUIOGSSHTLaFcmD9s0afXaEF87');"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-gray-900/50 border-t border-gray-200/50 dark:border-gray-800/50">
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl">eco</span>
+<h2 class="text-text-light dark:text-text-dark text-xl font-bold">FreshHarvest</h2>
+</div>
+<p class="mt-4 text-sm text-text-muted-light dark:text-text-muted-dark">Rau củ quả tươi sạch, giao hàng tận nhà.</p>
+<div class="flex space-x-4 mt-4">
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm-1.161 4.883a.96.96 0 100 1.92.96.96 0 000-1.92zm-2.404 3.833a4.01 4.01 0 118.02 0 4.01 4.01 0 01-8.02 0z" fill-rule="evenodd"></path><path d="M12 15.333a3.333 3.333 0 100-6.666 3.333 3.333 0 000 6.666z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-light dark:text-text-dark tracking-wider uppercase">Liên kết</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-base text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Chính sách giao hàng</a></li>
+<li><a class="text-base text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Chính sách đổi trả</a></li>
+<li><a class="text-base text-text-muted-light dark:text-text-muted-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-light dark:text-text-dark tracking-wider uppercase">Liên hệ</h3>
+<ul class="mt-4 space-y-2">
+<li><p class="text-base text-text-muted-light dark:text-text-muted-dark">123 Đường ABC, Q.1, TPHCM</p></li>
+<li><p class="text-base text-text-muted-light dark:text-text-muted-dark">contact@freshharvest.com</p></li>
+<li><p class="text-base text-text-muted-light dark:text-text-muted-dark">(028) 3812 3456</p></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold text-text-light dark:text-text-dark tracking-wider uppercase">Đăng ký nhận tin</h3>
+<p class="mt-4 text-base text-text-muted-light dark:text-text-muted-dark">Nhận thông tin khuyến mãi và sản phẩm mới nhất.</p>
+<form class="mt-4 flex gap-2">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-light dark:text-text-dark focus:outline-0 focus:ring-2 focus:ring-primary/50 border-gray-300 dark:border-gray-700 bg-background-light dark:bg-background-dark h-10 placeholder:text-text-muted-light dark:placeholder:text-text-muted-dark px-4 text-sm font-normal leading-normal" placeholder="Email của bạn" type="email"/>
+<button class="flex-shrink-0 flex items-center justify-center rounded-lg h-10 w-10 bg-primary text-primary-content hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<div class="mt-8 border-t border-gray-200/50 dark:border-gray-800/50 pt-8 text-center">
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2024 FreshHarvest. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
